@@ -1,0 +1,42 @@
+name: Bug report
+description: Report a reproducible Daemon Mode problem using synthetic data.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not attach real browsing data, URLs, database files, API keys, or raw private queries. Report security issues through SECURITY.md instead.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the user-visible problem and what you expected.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction
+      description: Give minimal steps using synthetic or public example data.
+    validations:
+      required: true
+  - type: input
+    id: commit
+    attributes:
+      label: Daemon version or commit
+      placeholder: v0.5.10 or commit hash
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: macOS version, browser, Python version, agent client
+    validations:
+      required: true
+  - type: textarea
+    id: checks
+    attributes:
+      label: Verification already tried
+      description: Include redacted error text and which proof scripts pass or fail.

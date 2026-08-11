@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Documentation — Daemon Mode</title>
+  <meta name="description" content="Installation, privacy, support, and security documentation for Daemon Mode.">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#061416">
+  <link rel="icon" href="../assets/icons/dmn-icon-32.png" type="image/png">
+  <link rel="stylesheet" href="../cohesive.css?v=0.5.10-launch-5">
+  <script src="../file-navigation.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="page-atmosphere" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="shell header-row">
+      <a class="brand" href="../" aria-label="Daemon Mode home"><img src="../assets/brand/dmn-mark.png" alt="" width="34" height="34"><span>daemon<span>.mode</span></span></a>
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation">
+        <a href="../#product">Product</a>
+        <a href="../#how">How it works</a>
+        <a href="../#install">Install</a>
+        <a href="./" aria-current="page">Docs</a>
+      </nav>
+      <div class="header-actions"><a class="store-soon" href="../"><i aria-hidden="true"></i> Back to product</a></div>
+      <button class="menu-button" type="button" aria-controls="primary-nav" aria-expanded="false">Menu</button>
+    </div>
+  </header>
+
+  <main class="document-main docs-hub" id="main">
+    <div class="shell">
+      <nav class="docs-tabs" aria-label="Documentation categories">
+        <a href="./" aria-current="page">Overview</a>
+        <a href="../privacy/">Privacy</a>
+        <a href="../support/">Support</a>
+        <a href="../security/">Security</a>
+      </nav>
+
+      <header class="document-hero docs-hero">
+        <p class="section-kicker">Daemon Mode documentation</p>
+        <h1>Docs.</h1>
+        <p>Understand the local system, install every required part, and inspect the privacy and security boundaries before connecting an agent.</p>
+      </header>
+
+      <section class="docs-hub-grid" aria-label="Documentation areas">
+        <a href="../support/#install">
+          <span>01 · Start</span>
+          <h2>Install and connect</h2>
+          <p>Set up the companion service, Chrome extension, and a non-destructive MCP client on macOS.</p>
+          <b aria-hidden="true">→</b>
+        </a>
+        <a href="../privacy/">
+          <span>02 · Understand</span>
+          <h2>Privacy</h2>
+          <p>See what can be stored, what stays local, protection behavior, and optional provider transfer.</p>
+          <b aria-hidden="true">→</b>
+        </a>
+        <a href="../support/">
+          <span>03 · Recover</span>
+          <h2>Support</h2>
+          <p>Recover a stopped service, update safely, connect MCP clients, and uninstall without data loss.</p>
+          <b aria-hidden="true">→</b>
+        </a>
+        <a href="../security/">
+          <span>04 · Report</span>
+          <h2>Security</h2>
+          <p>Review the local security boundaries and report vulnerabilities without sharing private data.</p>
+          <b aria-hidden="true">→</b>
+        </a>
+      </section>
+
+      <section class="docs-paths" aria-labelledby="docs-paths-title">
+        <div>
+          <p class="section-kicker">Common paths</p>
+          <h2 id="docs-paths-title">Go directly to the answer.</h2>
+        </div>
+        <nav aria-label="Common documentation links">
+          <a href="../support/#requirements"><span>Supported environment</span><small>Chrome on macOS</small></a>
+          <a href="../support/#mcp"><span>Connect an MCP client</span><small>Codex, Claude Code/Desktop, or Cursor</small></a>
+          <a href="../privacy/#protection"><span>Protection model</span><small>Before capture and retrieval</small></a>
+          <a href="../privacy/#provider"><span>Optional provider prose</span><small>What can leave the device</small></a>
+          <a href="../security/#report"><span>Report a vulnerability</span><small>Safe private reporting</small></a>
+        </nav>
+      </section>
+
+      <aside class="docs-status" aria-label="Launch availability">
+        <span><i aria-hidden="true"></i> Source-installed technical preview</span>
+        <p>Pre-release review is in progress. Public GitHub access and the Chrome Web Store listing will open at launch.</p>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-bottom"><p>Daemon Mode · local, owner-controlled agent memory</p><p><a href="../">Product</a> · <a href="../privacy/">Privacy</a> · <a href="../support/">Support</a> · <a href="../security/">Security</a></p></div></footer>
+  <script>(function(){var b=document.querySelector('.menu-button'),n=document.getElementById('primary-nav');b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Close':'Menu';n.classList.toggle('is-open',o)});document.addEventListener('keydown',function(e){if(e.key==='Escape'){b.setAttribute('aria-expanded','false');b.textContent='Menu';n.classList.remove('is-open')}})})();</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Daemon Mode</title>
+    <link rel="icon" href="../assets/icons/dmn-icon-32.png" type="image/png">
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="popup-shell">
+      <header class="header">
+        <div class="brand-lockup">
+          <img class="brand-mark" src="../assets/brand/dmn-mark.png" alt="" aria-hidden="true">
+          <div>
+            <h1>daemon</h1>
+            <p id="endpoint">Local memory</p>
+          </div>
+        </div>
+        <span id="status-pill" class="status-pill">Loading</span>
+      </header>
+
+      <section id="today-line" class="today-line" hidden>
+        <p id="today-line-text"></p>
+      </section>
+
+      <section id="consent-disclosure" class="consent-disclosure" hidden>
+        <p class="label">Before you start</p>
+        <p>Daemon can access the URL, page title, capture time, and readable page text on allowed sites. It saves them to local SQLite on this Mac so connected agents can retrieve cited evidence without changing your memory.</p>
+        <p>Protection and your blocks are checked before text is read. There is no Daemon account, analytics, or cloud sync. Chrome profiles enabled under the same macOS user share this local vault.</p>
+      </section>
+
+      <section class="page-card">
+        <p class="label">This page</p>
+        <h2 id="page-title" class="page-title">Checking status</h2>
+        <p id="page-message" class="event-message">Looking for the local service...</p>
+        <p id="page-detail" class="event-detail"></p>
+      </section>
+
+      <section id="latest-activity" class="event" hidden>
+        <p class="label">Recent</p>
+        <p id="event-message" class="event-message">No activity yet.</p>
+        <p id="event-detail" class="event-detail"></p>
+        <button id="more-activity" class="activity-toggle" type="button" hidden>
+          <span class="origin-label">More activity</span>
+        </button>
+        <div id="activity-list" class="activity-list" hidden></div>
+      </section>
+
+      <div class="actions">
+        <button id="open-memory" class="primary origin-action" data-origin-button type="button">
+          <span class="origin-label">Open memory</span>
+        </button>
+        <div class="secondary-actions">
+          <button id="capture-again" class="secondary origin-action" data-origin-button type="button">
+            <span class="origin-label">Capture again</span>
+          </button>
+          <button id="pause-toggle" class="secondary origin-action" data-origin-button type="button">
+            <span class="origin-label">Pause</span>
+          </button>
+          <button id="block-site" class="secondary origin-action" data-origin-button type="button">
+            <span class="origin-label">Block site</span>
+          </button>
+        </div>
+      </div>
+
+      <footer id="trust-footer" class="trust-footer">Local only · no cloud sync</footer>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

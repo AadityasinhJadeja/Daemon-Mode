@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy — Daemon Mode</title>
+  <meta name="description" content="How Daemon Mode handles page content, local storage, protection, agent access, and optional provider-backed prose.">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#061416">
+  <link rel="icon" href="../assets/icons/dmn-icon-32.png" type="image/png">
+  <link rel="stylesheet" href="../cohesive.css?v=0.5.10-launch-5">
+  <script src="../file-navigation.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="page-atmosphere" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="shell header-row">
+      <a class="brand" href="../" aria-label="Daemon Mode home"><img src="../assets/brand/dmn-mark.png" alt="" width="34" height="34"><span>daemon<span>.mode</span></span></a>
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation"><a href="../#product">Product</a><a href="../#how">How it works</a><a href="../#install">Install</a><a href="../docs/" aria-current="page">Docs</a></nav>
+      <div class="header-actions"><a class="store-soon" href="../"><i aria-hidden="true"></i> Back to product</a></div>
+      <button class="menu-button" type="button" aria-controls="primary-nav" aria-expanded="false">Menu</button>
+    </div>
+  </header>
+
+  <main class="document-main" id="main">
+    <div class="shell">
+      <nav class="docs-tabs" aria-label="Documentation categories"><a href="../docs/">Overview</a><a href="./" aria-current="page">Privacy</a><a href="../support/">Support</a><a href="../security/">Security</a></nav>
+      <header class="document-hero">
+        <p class="section-kicker">Public policy</p>
+        <h1>Privacy.</h1>
+        <p>Daemon Mode is designed to keep agent memory under the owner's control. This page explains what can be handled, where it is stored, and the boundaries that apply.</p>
+      </header>
+
+      <div class="document-grid">
+        <nav class="document-nav" aria-label="Privacy sections">
+          <a href="#limited-use">Limited use</a><a href="#stored">What is stored</a><a href="#location">Where it lives</a><a href="#protection">Protection</a><a href="#agents">Agent access</a><a href="#provider">Optional provider</a><a href="#controls">Owner controls</a><a href="#permissions">Permissions</a>
+        </nav>
+        <article class="document-content">
+          <section id="limited-use">
+            <h2>Chrome Web Store Limited Use</h2>
+            <p>Daemon uses browsing activity and website content only to provide its disclosed single purpose: local, owner-controlled memory that the user's chosen AI agents can search through non-destructive tools.</p>
+            <p>Daemon does not sell this data, use it for advertising or credit decisions, or send it to the developer or other people. Access to the local files follows the owner's macOS permissions.</p>
+            <p>Daemon Mode's use of information received from Chrome extension APIs adheres to the <a href="https://developer.chrome.com/docs/webstore/program-policies/policies" rel="noopener">Chrome Web Store User Data Policy</a>, including its Limited Use requirements.</p>
+          </section>
+
+          <section id="stored">
+            <h2>What can be stored</h2>
+            <p>For pages that pass protection checks, Daemon can store the page URL, title, domain, capture time, extracted readable page text, text length, and local capture metadata in SQLite.</p>
+            <p>Bounded agent-tool diagnostics can include tool name, status, timing, evidence count, and a bounded query for owner-visible review. Query logs do not store the retrieved evidence snippets.</p>
+            <div class="document-callout document-callout--warning"><strong>Private data warning</strong><p>Daemon does not intentionally store cookies, passwords, form values, or credentials. Page text can still contain sensitive information, so review protection settings before browsing private material.</p></div>
+          </section>
+
+          <section id="location">
+            <h2>Where it is stored</h2>
+            <p>Memory is stored locally in a SQLite file. The default macOS path is:</p>
+            <pre><code>~/Library/Application Support/Daemon Mode/memory.sqlite3</code></pre>
+            <p>The extension sends allowed page data only to the companion service on the same computer. The service binds to loopback only. Daemon has no account system, cloud database, analytics service, advertising SDK, or remote sync.</p>
+            <h3>Chrome profiles share one macOS-user vault</h3>
+            <p>Chrome profiles enabled under the same macOS user account connect to the same local service and merge allowed captures into one SQLite vault. Separate macOS user accounts have separate default vaults.</p>
+          </section>
+
+          <section id="protection">
+            <h2>Protection happens at three boundaries</h2>
+            <ol><li><strong>Before reading:</strong> the extension checks the current page immediately before it reads page text.</li><li><strong>Before storage:</strong> the local service rejects protected and credential-bearing URLs.</li><li><strong>Before retrieval:</strong> protection rules are applied again before evidence can reach an agent.</li></ol>
+            <p>Built-in sensitive categories, site preferences, password/private-page checks, and the owner's blocklist participate in those decisions. If the initial check is unavailable, unsuccessful, or malformed, the extension fails closed and does not read page text.</p>
+            <p>Protected events can retain bounded diagnostics such as domain, reason, status, and time so the owner can verify that protection happened. They do not retain protected page text.</p>
+          </section>
+
+          <section id="agents">
+            <h2>Agent data access is non-destructive</h2>
+            <p>Agents can search memory, retrieve citation-ready evidence, request an evidence-grounded answer, request an exact agent-safe activity summary, and check bounded protection status.</p>
+            <p>Agents cannot export, delete, clear, or change protection rules through MCP. Daemon records bounded local query metadata—client, tool, outcome, timing, and evidence count—for the owner-visible activity view, but not returned evidence snippets. An agent with separate shell or filesystem access is outside this MCP-only boundary. The connected agent client and its model can process evidence returned through MCP under that client's own privacy terms.</p>
+          </section>
+
+          <section id="provider">
+            <h2>Optional provider-backed prose</h2>
+            <p>No AI provider is needed for local capture, search, citations, protection, or exact summaries. If the owner explicitly enables a provider, selected evidence and the question are sent to that provider to produce prose. The provider receives only the evidence selected for that request; its own privacy terms then apply.</p>
+            <div class="document-callout"><strong>Correct disclosure</strong><p>When provider-backed prose is shown, Daemon identifies it as: “Evidence selected locally · answered by [provider].”</p></div>
+          </section>
+
+          <section id="controls">
+            <h2>Human-owned controls</h2>
+            <p>The local dashboard provides human-only controls to export the SQLite database, permanently delete one capture, clear captures and local agent-query history while preserving protection rules, and add or change protection rules.</p>
+            <p>SQLite secure deletion, physical row and FTS deletion, database compaction, and WAL truncation reduce recoverable remnants after confirmed deletion. Backups, snapshots, or copies made outside Daemon are outside that guarantee.</p>
+            <p>Uninstalling the background service does not delete memory. This prevents accidental data loss and lets the owner export or clear it separately.</p>
+          </section>
+
+          <section id="permissions">
+            <h2>Browser permissions and network behavior</h2>
+            <dl class="document-table">
+              <div><dt>Website access</dt><dd>Optional access to normal HTTP and HTTPS pages is used only to remember allowed content after explicit owner consent.</dd></div>
+              <div><dt>storage</dt><dd>Keeps extension consent and local preferences.</dd></div>
+              <div><dt>webNavigation</dt><dd>Observes navigation and single-page-app changes.</dd></div>
+              <div><dt>Required host</dt><dd><code>http://127.0.0.1:4317/*</code> for the companion service only.</dd></div>
+              <div><dt>Incognito</dt><dd>Not allowed.</dd></div>
+            </dl>
+            <p>Removing the extension stops future capture but does not delete the separately stored SQLite vault. Protection reduces exposure but cannot guarantee classification of every sensitive sentence on an otherwise allowed page. A malicious local administrator or process with access to the owner's files is outside the current boundary.</p>
+            <div class="document-callout document-callout--warning"><strong>Reporting a privacy issue</strong><p>Never post real browsing text, URLs, database files, credentials, or API keys. Follow the safe instructions on the <a href="../security/">Security page</a>.</p></div>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-bottom"><p>Daemon Mode · local, owner-controlled agent memory</p><p><a href="../">Product</a> · <a href="../docs/">Docs</a> · <a href="../support/">Support</a> · <a href="../security/">Security</a></p></div></footer>
+  <script>(function(){var b=document.querySelector('.menu-button'),n=document.getElementById('primary-nav');b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Close':'Menu';n.classList.toggle('is-open',o)});document.addEventListener('keydown',function(e){if(e.key==='Escape'){b.setAttribute('aria-expanded','false');b.textContent='Menu';n.classList.remove('is-open')}})})();</script>
+</body>
+</html>

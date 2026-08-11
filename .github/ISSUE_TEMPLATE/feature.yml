@@ -1,0 +1,30 @@
+name: Feature request
+description: Propose a focused improvement to trusted local agent memory.
+title: "[Idea]: "
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Daemon prioritizes local ownership, protection, recoverability, citations, and useful recall. MCP agent actions remain non-destructive.
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem
+      description: What recurring job is difficult today? Avoid solution-first framing.
+    validations:
+      required: true
+  - type: textarea
+    id: value
+    attributes:
+      label: Why this belongs in Daemon
+      description: Explain how it improves trust or evidence-backed agent memory.
+    validations:
+      required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Privacy and product boundaries
+      description: What data, permissions, or failure modes would this introduce?
+    validations:
+      required: true

@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3ifUcP2gt8JtsSp43cVKEaYZLRm+hhVHhu56PrFsARRQ/HcDXLuCdUILdaXafxkoZxmLmYagFs7jWnI6EOFVc7N0ZQTh3xzRm37zsqzwQF5rY3c+p1uFk5W0aOjhY9KXERUC1O4OQd4DAZXVJTqrSZZ8nJBrv/eTxIsCYBojNY2vBB9FwDZBC+pYV5zKIFMNwoPSI6/N8irJyIKDtJ0YJkbJzk9JU5KIf3reWPeSVxI6PI7W0pTZPu8+PSHn1GohE4II/Kc0oIDEKwlLV0GluAMNukVfiwAltUBleHZbpOTqN755BRR2ruZV8EJ3VBcj7tjmTb4Mn5t21MByhgz0PwIDAQAB",
+  "name": "Daemon Mode",
+  "description": "Save allowed web pages locally so your AI agents can recall them later with evidence and citations.",
+  "version": "0.5.10",
+  "incognito": "not_allowed",
+  "icons": {
+    "16": "assets/icons/dmn-icon-16.png",
+    "32": "assets/icons/dmn-icon-32.png",
+    "48": "assets/icons/dmn-icon-48.png",
+    "128": "assets/icons/dmn-icon-128.png"
+  },
+  "permissions": ["scripting", "storage", "webNavigation"],
+  "host_permissions": ["http://127.0.0.1:4317/*"],
+  "optional_host_permissions": ["http://*/*", "https://*/*"],
+  "action": {
+    "default_title": "Daemon Mode",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "assets/icons/dmn-icon-16.png",
+      "32": "assets/icons/dmn-icon-32.png",
+      "48": "assets/icons/dmn-icon-48.png",
+      "128": "assets/icons/dmn-icon-128.png"
+    }
+  },
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  }
+}

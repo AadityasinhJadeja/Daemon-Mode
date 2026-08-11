@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Support — Daemon Mode</title><meta name="description" content="Installation, service recovery, MCP connection, updates, and uninstall guidance for Daemon Mode on macOS.">
+  <meta name="color-scheme" content="dark"><meta name="theme-color" content="#061416">
+  <link rel="icon" href="../assets/icons/dmn-icon-32.png" type="image/png"><link rel="stylesheet" href="../cohesive.css?v=0.5.10-launch-5"><script src="../file-navigation.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a><div class="page-atmosphere" aria-hidden="true"></div>
+  <header class="site-header"><div class="shell header-row">
+    <a class="brand" href="../" aria-label="Daemon Mode home"><img src="../assets/brand/dmn-mark.png" alt="" width="34" height="34"><span>daemon<span>.mode</span></span></a>
+    <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation"><a href="../#product">Product</a><a href="../#how">How it works</a><a href="../#install">Install</a><a href="../docs/" aria-current="page">Docs</a></nav>
+    <div class="header-actions"><a class="store-soon" href="../"><i aria-hidden="true"></i> Back to product</a></div><button class="menu-button" type="button" aria-controls="primary-nav" aria-expanded="false">Menu</button>
+  </div></header>
+
+  <main class="document-main" id="main"><div class="shell">
+    <nav class="docs-tabs" aria-label="Documentation categories"><a href="../docs/">Overview</a><a href="../privacy/">Privacy</a><a href="./" aria-current="page">Support</a><a href="../security/">Security</a></nav>
+    <header class="document-hero"><p class="section-kicker">Installation and recovery</p><h1>Support.</h1><p>Daemon Mode currently supports Google Chrome on macOS. The extension, companion local service, and MCP connection are separate parts of one local system.</p></header>
+    <div class="document-grid">
+      <nav class="document-nav" aria-label="Support sections"><a href="#requirements">Requirements</a><a href="#install">Install</a><a href="#service">Service off</a><a href="#mcp">MCP connection</a><a href="#update">Update</a><a href="#uninstall">Uninstall</a><a href="#request">Ask for help</a></nav>
+      <article class="document-content">
+        <section id="requirements">
+          <h2>Supported environment</h2>
+          <dl class="document-table"><div><dt>Operating system</dt><dd>macOS</dd></div><div><dt>Browser</dt><dd>Google Chrome</dd></div><div><dt>Local tools</dt><dd>Python 3.11 or newer and Git</dd></div><div><dt>Agent</dt><dd>An AI agent or app that supports a local MCP connection</dd></div></dl>
+          <p>Brave, Edge, Arc, Firefox, Windows, Linux, mobile, and Safari are not current support promises.</p>
+        </section>
+        <section id="install">
+          <h2>Install the two local components</h2>
+          <h3>1. Companion local service</h3><p>During the source-installed preview, run the installer from a repository checkout:</p><pre><code>./tools/install-local-service-launch-agent.sh</code></pre><p>This installs and starts the companion service for your macOS user. It does not delete or replace an existing memory vault.</p><div class="document-callout"><strong>No window needs to stay open</strong><p>The installer registers a per-user macOS LaunchAgent. The service starts after you log in, returns after a normal reboot once you log in again, and is restarted by macOS if the process exits unexpectedly. The dashboard is only a view into the service; closing its tab does not stop capture.</p></div>
+          <h3>2. Chrome extension</h3><p>During the technical preview, open <code>chrome://extensions</code>, turn on Developer mode, choose <strong>Load unpacked</strong>, and select this checkout's <code>extension/</code> folder. Chrome will show its normal Developer mode warning. The official Store URL will replace this source-install step only after publication.</p>
+          <div class="document-callout"><strong>The extension is not the service</strong><p>Installing only the extension does not create or host the memory vault. Chrome captures allowed pages; the companion service stores and retrieves them.</p></div>
+        </section>
+        <section id="service">
+          <h2>If the service is off</h2>
+          <p>The background service does not run before login or while your macOS user is logged out. After login, the extension should reconnect without a dashboard or terminal window.</p><ol><li>Open the Daemon extension and confirm it reports that the companion service is unavailable.</li><li>From the repository checkout, run the installer again. The managed installer is idempotent: it verifies the managed files, reloads an unloaded service, and preserves the memory vault.</li><li>Confirm the loopback health endpoint responds:</li></ol><pre><code>curl --fail --silent --show-error http://127.0.0.1:4317/health</code></pre><p>If the service still does not start, save the error text only. Do not attach your database or real captured content to a public request.</p>
+        </section>
+        <section id="mcp">
+          <h2>Connect an MCP client</h2><p>The setup helper prints machine-correct configuration without changing anything by default:</p><pre><code>python3 tools/setup-agent-harness.py</code></pre><p>When ready, explicitly connect one verified client:</p><pre><code>python3 tools/setup-agent-harness.py --apply codex --scope user</code></pre><p>Replace <code>codex</code> with <code>claude-code</code>, <code>cursor</code>, or <code>claude-desktop</code>. The helper backs up existing configuration, preserves unrelated settings, and refuses malformed or conflicting files.</p><p>ChatGPT is not configured by this local helper. Its integration path is remote MCP/apps/connectors and would require a future bridge that preserves Daemon's non-destructive and protection boundaries.</p>
+        </section>
+        <section id="update">
+          <h2>Update safely</h2><p>After updating a checkout, run the local service installer again. The managed-runtime workflow verifies the new release, preserves the database, activates it atomically, and restores the prior runtime if startup fails.</p><pre><code>./tools/install-local-service-launch-agent.sh</code></pre><p>During the technical preview, return to <code>chrome://extensions</code> and reload Daemon after updating the checkout. The official Store will handle extension updates only after that listing exists.</p>
+        </section>
+        <section id="uninstall">
+          <h2>Uninstall without accidental data loss</h2><p>Stop the background service with:</p><pre><code>./tools/uninstall-local-service-launch-agent.sh</code></pre><p>This preserves the managed runtime and SQLite memory by design. Removing the Chrome extension stops future capture but also does not delete the separate SQLite vault. Use the human-owned dashboard controls to export or clear memory before deleting files manually.</p>
+        </section>
+        <section id="request">
+          <h2>Ask for help safely</h2><div class="document-callout document-callout--warning"><strong>Never post private browsing material</strong><p>Do not include real browsing text, URLs, databases, credentials, API keys, screenshots containing private pages, or local configuration files in a public support request.</p></div><p>After public launch, use GitHub Issues with synthetic details for installation or product problems. For a possible vulnerability, follow the <a href="../security/">Security reporting guidance</a> instead of using public support.</p>
+        </section>
+      </article>
+    </div>
+  </div></main>
+  <footer class="site-footer"><div class="shell footer-bottom"><p>Daemon Mode · Chrome on macOS</p><p><a href="../">Product</a> · <a href="../docs/">Docs</a> · <a href="../privacy/">Privacy</a> · <a href="../security/">Security</a></p></div></footer>
+  <script>(function(){var b=document.querySelector('.menu-button'),n=document.getElementById('primary-nav');b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Close':'Menu';n.classList.toggle('is-open',o)});document.addEventListener('keydown',function(e){if(e.key==='Escape'){b.setAttribute('aria-expanded','false');b.textContent='Menu';n.classList.remove('is-open')}})})();</script>
+</body>
+</html>

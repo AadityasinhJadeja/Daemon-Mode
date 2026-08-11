@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daemon Mode — Private memory for AI agents</title>
+  <meta name="description" content="Daemon Mode saves allowed pages locally on your Mac and gives connected AI agents non-destructive, citation-backed memory through MCP.">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#061416">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Daemon Mode">
+  <meta property="og:description" content="Private, local, citation-backed memory for your AI agents.">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="./assets/icons/dmn-icon-32.png" type="image/png">
+  <link rel="apple-touch-icon" href="./assets/icons/dmn-icon-192.png">
+  <link rel="preload" href="./assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/atkinson-hyperlegible-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/commit-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/literata-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./cohesive.css?v=0.5.10-launch-5">
+  <script src="./version.js"></script>
+  <script src="./file-navigation.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="page-atmosphere" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="shell header-row">
+      <a class="brand" href="/" aria-label="Daemon Mode home">
+        <img src="./assets/brand/dmn-mark.png" alt="" width="34" height="34">
+        <span>daemon<span>.mode</span></span>
+      </a>
+
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation">
+        <a href="#product">Product</a>
+        <a href="#how">How it works</a>
+        <a href="#install">Install</a>
+        <a href="#faq">FAQ</a>
+        <a href="./docs/">Docs</a>
+      </nav>
+
+      <div class="header-actions">
+        <span class="github-placeholder" aria-disabled="true"><img src="./assets/agents/github.svg" alt="" width="16" height="16"><span>GitHub at launch</span></span>
+        <span class="store-placeholder" aria-disabled="true" aria-label="Chrome Web Store link activates after publication"><i aria-hidden="true"></i> Chrome Web Store</span>
+      </div>
+
+      <button class="menu-button" type="button" aria-controls="primary-nav" aria-expanded="false">Menu</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-art" aria-hidden="true">
+        <div class="hero-art__ring hero-art__ring--outer"></div>
+        <div class="hero-art__ring hero-art__ring--middle"></div>
+        <div class="hero-art__ring hero-art__ring--inner"></div>
+      </div>
+
+      <div class="shell hero-copy">
+        <p class="eyebrow"><span aria-hidden="true"></span> Local agent memory · Chrome on macOS</p>
+        <h1 id="hero-title">Private <em>memory</em> for AI agents.</h1>
+        <p class="hero-lede">Daemon saves allowed pages to an owner-controlled SQLite file on your Mac, then gives connected agents citation-backed evidence through non-destructive MCP tools.</p>
+        <div class="hero-actions">
+          <a class="button button--primary origin-action" data-origin-button href="#install"><span class="origin-label">See install commands <span class="button-arrow" aria-hidden="true">↓</span></span></a>
+          <a class="button button--secondary origin-action" data-origin-button href="#how"><span class="origin-label">How memory moves <span class="button-arrow" aria-hidden="true">↓</span></span></a>
+        </div>
+        <ul class="hero-facts" aria-label="Product boundaries">
+          <li>saved locally</li>
+          <li>protected before read</li>
+          <li>agents cannot change memory</li>
+          <li>no account</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="quick-start" id="install" aria-labelledby="quick-start-title">
+      <div class="shell quick-start-shell">
+        <div class="quick-start-intro">
+          <p class="section-kicker">Quick start</p>
+          <h2 id="quick-start-title">Install Daemon Mode.</h2>
+          <p>Companion service, Chrome extension, then one non-destructive MCP connection.</p>
+        </div>
+
+        <div class="install-console" role="region" aria-label="Daemon Mode installation preview">
+          <div class="install-console__tabs" role="tablist" aria-label="Installation steps">
+            <button class="is-active" id="install-tab-service" type="button" role="tab" aria-selected="true" aria-controls="install-panel-service">Companion service</button>
+            <button id="install-tab-extension" type="button" role="tab" aria-selected="false" aria-controls="install-panel-extension" tabindex="-1">Chrome extension</button>
+            <button id="install-tab-mcp" type="button" role="tab" aria-selected="false" aria-controls="install-panel-mcp" tabindex="-1">MCP connection</button>
+            <span class="install-tab-indicator" aria-hidden="true"></span>
+            <b>macOS</b>
+          </div>
+          <div class="install-console__body install-panel" id="install-panel-service" role="tabpanel" aria-labelledby="install-tab-service">
+            <p class="install-note"># Preview command · run from the Daemon repository checkout</p>
+            <div class="command-row">
+              <span class="prompt" aria-hidden="true">$</span>
+              <code id="service-install-command">./tools/install-local-service-launch-agent.sh</code>
+              <button class="copy-button" data-copy-target="service-install-command" type="button" aria-label="Copy companion service install command">
+                <span aria-hidden="true">Copy</span>
+                <span class="copy-button__status" aria-live="polite"></span>
+              </button>
+            </div>
+          </div>
+          <div class="install-console__body install-panel" id="install-panel-extension" role="tabpanel" aria-labelledby="install-tab-extension" hidden>
+            <p class="install-note"># Technical preview · Chrome Developer mode</p>
+            <div class="install-status-row">
+              <strong>Load this checkout's extension/ folder unpacked</strong>
+              <span><i aria-hidden="true"></i> Store link follows publication</span>
+            </div>
+          </div>
+          <div class="install-console__body install-panel" id="install-panel-mcp" role="tabpanel" aria-labelledby="install-tab-mcp" hidden>
+            <p class="install-note"># Connect Codex · replace codex with claude-code, cursor, or claude-desktop</p>
+            <div class="command-row">
+              <span class="prompt" aria-hidden="true">$</span>
+              <code id="mcp-install-command">python3 tools/setup-agent-harness.py --apply codex --scope user</code>
+              <button class="copy-button" data-copy-target="mcp-install-command" type="button" aria-label="Copy MCP connection command">
+                <span aria-hidden="true">Copy</span>
+                <span class="copy-button__status" aria-live="polite"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <p class="availability-note"><span aria-hidden="true"></span> Pre-release preview. Public GitHub access and the Chrome Web Store listing will open at launch.</p>
+      </div>
+    </section>
+
+    <section class="product-section" id="product" aria-labelledby="product-title">
+      <div class="shell">
+        <div class="section-heading section-heading--center">
+          <p class="section-kicker">Why agent memory matters</p>
+          <h2 id="product-title">Your agents stop starting from zero.</h2>
+          <p>Daemon turns allowed reading into reusable evidence, then brings it back where your agents already work.</p>
+        </div>
+
+        <figure class="evidence-proof" data-evidence-proof aria-labelledby="evidence-proof-title">
+          <div class="evidence-proof__topline">
+            <figcaption id="evidence-proof-title"><i aria-hidden="true"></i> Example memory proof</figcaption>
+            <span>Public documentation only · no personal memory</span>
+          </div>
+
+          <div class="evidence-proof__instrument">
+            <article class="proof-query" data-proof-step="1">
+              <p class="proof-label">Agent asks</p>
+              <blockquote>“Does Daemon send my pages to a cloud memory service?”</blockquote>
+              <div class="proof-agent-row" aria-label="Example connected agents">
+                <span><img src="./assets/agents/openai.svg" alt="" width="18" height="18"> Codex</span>
+                <span><img src="./assets/agents/anthropic.svg" alt="" width="18" height="18"> Claude Code</span>
+                <span><img src="./assets/agents/cursor.svg" alt="" width="18" height="18"> Cursor</span>
+              </div>
+            </article>
+
+            <div class="proof-transfer" aria-hidden="true">
+              <span></span>
+            </div>
+
+            <article class="proof-evidence" data-proof-step="2">
+              <p class="proof-label">Evidence selected locally</p>
+              <a href="./privacy/">
+                <span>01</span>
+                <div><strong>Privacy guide</strong><small>Loopback-only communication</small></div>
+                <b aria-hidden="true">↗</b>
+              </a>
+              <a href="./security/">
+                <span>02</span>
+                <div><strong>Security boundary</strong><small>No hosted Daemon memory service</small></div>
+                <b aria-hidden="true">↗</b>
+              </a>
+            </article>
+
+            <div class="proof-transfer proof-transfer--answer" aria-hidden="true">
+              <span></span>
+            </div>
+
+            <article class="proof-answer" data-proof-step="3">
+              <p class="proof-label">Grounded response</p>
+              <p>No. Allowed page data moves from Chrome to the companion service on your Mac. Optional provider-backed prose is separate and explicit.</p>
+              <footer><span>2 citations</span><span>non-destructive</span><span>local evidence</span></footer>
+            </article>
+          </div>
+
+          <div class="evidence-proof__caption">
+            <span><i aria-hidden="true"></i> Evidence selected locally</span>
+            <span aria-hidden="true">→</span>
+            <span>returned to a connected agent with citations</span>
+          </div>
+        </figure>
+
+        <div class="value-rows">
+          <article>
+            <span>01 · Remember</span>
+            <div><h3>Research becomes reusable context.</h3><p>Allowed pages are saved locally without asking you to tag, file, or summarize them.</p></div>
+            <blockquote><small>Example agent request</small>“Which tools did I compare for this project?”</blockquote>
+          </article>
+          <article>
+            <span>02 · Retrieve</span>
+            <div><h3>Decisions return with evidence.</h3><p>Local search gives connected agents the page, date, and citation behind what you previously read.</p></div>
+            <blockquote><small>Example agent request</small>“What evidence led me to this approach?”</blockquote>
+          </article>
+          <article>
+            <span>03 · Cite</span>
+            <div><h3>Unsupported memory stays unsupported.</h3><p>Agents receive evidence with citations but cannot change the vault. No evidence means no invented answer.</p></div>
+            <blockquote><small>Example agent request</small>“Find the source behind that detail.”</blockquote>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="flow-section" id="how" aria-labelledby="flow-title">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="section-kicker">How memory moves</p>
+          <h2 id="flow-title">Protected before reading, storage, and retrieval.</h2>
+        </div>
+
+        <div class="memory-flow-wrap" data-memory-flow>
+          <svg class="memory-flow__path" viewBox="0 0 1000 180" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="memory-path-gradient" x1="0" x2="1">
+                <stop offset="0" stop-color="#75c9b7" stop-opacity="0"/>
+                <stop offset=".18" stop-color="#75c9b7" stop-opacity=".45"/>
+                <stop offset=".5" stop-color="#e0ad59" stop-opacity=".5"/>
+                <stop offset=".82" stop-color="#75c9b7" stop-opacity=".45"/>
+                <stop offset="1" stop-color="#75c9b7" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path class="memory-flow__path-base" d="M100 90 C180 18 220 162 300 90 S420 18 500 90 S620 162 700 90 S820 18 900 90"/>
+            <path class="memory-flow__path-signal" d="M100 90 C180 18 220 162 300 90 S420 18 500 90 S620 162 700 90 S820 18 900 90"/>
+          </svg>
+          <ol class="memory-flow">
+            <li>
+              <span>01</span>
+              <div class="flow-mark flow-mark--chrome"><img src="./assets/agents/chrome.svg" alt="" width="48" height="48"></div>
+              <strong>Chrome page</strong>
+              <small>Allowed page finishes loading</small>
+            </li>
+            <li class="memory-flow__gate">
+              <span>02</span>
+              <b aria-hidden="true">Protected</b>
+              <strong>Capture check</strong>
+              <small>Before readable text is collected</small>
+            </li>
+            <li>
+              <span>03</span>
+              <div class="flow-mark"><img src="./assets/icons/dmn-icon-64.png" alt="" width="42" height="42"></div>
+              <strong>Storage check + SQLite</strong>
+              <small>Protected URLs are rejected before the vault</small>
+            </li>
+            <li class="memory-flow__gate">
+              <span>04</span>
+              <b aria-hidden="true">Protected</b>
+              <strong>Retrieval check</strong>
+              <small>Rules apply again for agent access</small>
+            </li>
+            <li>
+              <span>05</span>
+              <div class="agent-cluster" aria-hidden="true">
+                <i><img src="./assets/agents/openai.svg" alt=""></i>
+                <i><img src="./assets/agents/anthropic.svg" alt=""></i>
+                <i><img src="./assets/agents/cursor.svg" alt=""></i>
+              </div>
+              <strong>Connected agents</strong>
+              <small>Codex · Claude Code/Desktop · Cursor via non-destructive MCP</small>
+            </li>
+          </ol>
+        </div>
+
+        <aside class="trust-ribbon" aria-label="Core trust boundaries">
+          <div><strong>Saved locally</strong><span>SQLite on your Mac</span></div>
+          <div><strong>Protected three times</strong><span>Before read, storage, and retrieval</span></div>
+          <div><strong>Agents cannot change memory</strong><span>Humans manage the vault</span></div>
+          <a href="./docs/">Read the docs <span aria-hidden="true">→</span></a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="expectations-section" aria-labelledby="expectations-title">
+      <div class="shell expectations-grid">
+        <div>
+          <p class="section-kicker">Installation expectations</p>
+          <h2 id="expectations-title">This is a local system, not just an extension.</h2>
+          <p class="expectations-lede">Chrome captures allowed pages. A background companion service stores and retrieves them. MCP connects the agents you trust.</p>
+        </div>
+        <dl class="requirements">
+          <div><dt>Supported now</dt><dd>Google Chrome on macOS</dd></div>
+          <div><dt>Required</dt><dd>Chrome extension + companion service + MCP setup</dd></div>
+          <div><dt>Runs quietly</dt><dd>macOS starts the service at login; the dashboard can stay closed</dd></div>
+          <div><dt>Not promised</dt><dd>Brave, Edge, Arc, Firefox, Windows, Linux, mobile, or Safari</dd></div>
+          <div><dt>Launch status</dt><dd>Source-installed technical preview</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="faq-section" id="faq" aria-labelledby="faq-title">
+      <div class="shell faq-shell">
+        <div class="section-heading section-heading--center">
+          <p class="section-kicker">Questions, answered plainly</p>
+          <h2 id="faq-title">Frequently asked questions.</h2>
+        </div>
+
+        <div class="faq" data-faq-accordion>
+          <article class="faq-item is-open">
+            <h3><button type="button" aria-expanded="true" aria-controls="faq-upload"><span>Is anything ever uploaded from my browser?</span><i aria-hidden="true"></i></button></h3>
+            <div class="faq-panel" id="faq-upload"><p>The extension only speaks to <code>127.0.0.1:4317</code>, a service on your Mac. There is no Daemon cloud memory service. If you explicitly enable provider-backed prose, the local service sends your question and selected evidence to the provider you configured.</p></div>
+          </article>
+          <article class="faq-item">
+            <h3><button type="button" aria-expanded="false" aria-controls="faq-running"><span>Do I need to keep a terminal or the dashboard open?</span><i aria-hidden="true"></i></button></h3>
+            <div class="faq-panel" id="faq-running" hidden><p>No. The one-time installer registers a per-user macOS background service. It starts after you log in, returns after a normal reboot once you log in again, and is restarted if the process exits unexpectedly. The dashboard is only a view into that service.</p></div>
+          </article>
+          <article class="faq-item">
+            <h3><button type="button" aria-expanded="false" aria-controls="faq-browser"><span>Which browsers are supported?</span><i aria-hidden="true"></i></button></h3>
+            <div class="faq-panel" id="faq-browser" hidden><p>Google Chrome on macOS is the current support promise. Other browsers and operating systems have not been verified end to end.</p></div>
+          </article>
+          <article class="faq-item">
+            <h3><button type="button" aria-expanded="false" aria-controls="faq-protection"><span>What pages get protected automatically?</span><i aria-hidden="true"></i></button></h3>
+            <div class="faq-panel" id="faq-protection" hidden><p>Banking, healthcare, wallets and payments, mail, private messaging, private AI chats, browser-internal pages, and authentication flows. You can add domains of your own.</p></div>
+          </article>
+          <article class="faq-item">
+            <h3><button type="button" aria-expanded="false" aria-controls="faq-storage"><span>Where is my data stored?</span><i aria-hidden="true"></i></button></h3>
+            <div class="faq-panel" id="faq-storage" hidden><p>In a local SQLite file at <code>~/Library/Application Support/Daemon Mode/memory.sqlite3</code> for your macOS user.</p></div>
+          </article>
+          <article class="faq-item">
+            <h3><button type="button" aria-expanded="false" aria-controls="faq-key"><span>Do I need an AI-provider key?</span><i aria-hidden="true"></i></button></h3>
+            <div class="faq-panel" id="faq-key" hidden><p>No. Capture, protection, local retrieval, and MCP evidence work without one. A key is only needed for optional provider-backed prose.</p></div>
+          </article>
+          <article class="faq-item">
+            <h3><button type="button" aria-expanded="false" aria-controls="faq-source"><span>Will the source be public?</span><i aria-hidden="true"></i></button></h3>
+            <div class="faq-panel" id="faq-source" hidden><p>Yes. At launch, the extension, local service, MCP server, packaging workflow, and verification tools will be available in the GitHub repository.</p></div>
+          </article>
+        </div>
+
+        <div class="faq-after">
+          <span class="faq-after__signal" aria-hidden="true"></span>
+          <p><strong>Need the exact detail?</strong> Installation, privacy, support, and security guidance lives in Docs.</p>
+          <a href="./docs/">Browse Docs <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a class="brand footer-brand" href="/" aria-label="Daemon Mode home">
+        <img src="./assets/brand/dmn-mark.png" alt="" width="34" height="34">
+        <span>daemon<span>.mode</span></span>
+      </a>
+      <p class="footer-hook"><em>Remembered locally.</em> Available to the agents you choose.</p>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="./docs/">Docs</a><span aria-hidden="true">·</span>
+        <a href="./privacy/">Privacy</a><span aria-hidden="true">·</span>
+        <a href="./support/">Support</a><span aria-hidden="true">·</span>
+        <a href="./security/">Security</a><span aria-hidden="true">·</span>
+        <a href="#faq">FAQ</a><span aria-hidden="true">·</span>
+        <span aria-disabled="true">GitHub at launch</span>
+      </nav>
+      <p class="footer-attribution">Made by AJ. No analytics, tracking, advertising, or email collection.</p>
+      <div class="footer-stamp"><i aria-hidden="true"></i><span>local · 127.0.0.1:4317</span><span aria-hidden="true">·</span><span id="dmn-version">v0.5.10</span></div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var version = document.getElementById('dmn-version');
+      if (version && window.__DAEMON_VERSION__) version.textContent = 'v' + window.__DAEMON_VERSION__;
+
+      var menu = document.querySelector('.menu-button');
+      var nav = document.getElementById('primary-nav');
+      function setMenu(open) {
+        nav.classList.toggle('is-open', open);
+        menu.setAttribute('aria-expanded', open ? 'true' : 'false');
+        menu.textContent = open ? 'Close' : 'Menu';
+      }
+      menu.addEventListener('click', function () { setMenu(menu.getAttribute('aria-expanded') !== 'true'); });
+      nav.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', function () { setMenu(false); }); });
+      document.addEventListener('keydown', function (event) { if (event.key === 'Escape') setMenu(false); });
+
+      function getOriginCoverDiameter(width, height, x, y) {
+        return Math.ceil(2 * Math.max(
+          Math.hypot(x, y),
+          Math.hypot(width - x, y),
+          Math.hypot(x, height - y),
+          Math.hypot(width - x, height - y)
+        ));
+      }
+
+      function updateOriginFill(control, x, y) {
+        var rect = control.getBoundingClientRect();
+        var safeX = Math.max(0, Math.min(x, rect.width));
+        var safeY = Math.max(0, Math.min(y, rect.height));
+        control.style.setProperty('--origin-x', safeX + 'px');
+        control.style.setProperty('--origin-y', safeY + 'px');
+        control.style.setProperty('--origin-size', getOriginCoverDiameter(rect.width, rect.height, safeX, safeY) + 'px');
+      }
+
+      function setOriginActive(control, active) {
+        control.dataset.originActive = String(Boolean(active));
+      }
+
+      document.querySelectorAll('[data-origin-button]').forEach(function (control) {
+        function fromPointer(event) {
+          var rect = control.getBoundingClientRect();
+          updateOriginFill(control, event.clientX - rect.left, event.clientY - rect.top);
+        }
+        function fromCenter() {
+          var rect = control.getBoundingClientRect();
+          updateOriginFill(control, rect.width / 2, rect.height / 2);
+        }
+
+        control.addEventListener('pointerenter', function (event) { fromPointer(event); setOriginActive(control, true); });
+        control.addEventListener('pointermove', function (event) { if (control.dataset.originActive === 'true') fromPointer(event); });
+        control.addEventListener('pointerleave', function () { setOriginActive(control, false); control.dataset.originPressed = 'false'; });
+        control.addEventListener('pointerdown', function (event) {
+          if (event.button !== 0) return;
+          fromPointer(event);
+          setOriginActive(control, true);
+          control.dataset.originPressed = 'true';
+        });
+        control.addEventListener('pointerup', function () { control.dataset.originPressed = 'false'; });
+        control.addEventListener('pointercancel', function () { control.dataset.originPressed = 'false'; });
+        control.addEventListener('focus', function () {
+          if (!control.matches(':focus-visible')) return;
+          fromCenter();
+          setOriginActive(control, true);
+        });
+        control.addEventListener('blur', function () { setOriginActive(control, false); control.dataset.originPressed = 'false'; });
+        control.addEventListener('keydown', function (event) {
+          if (event.repeat || event.key !== 'Enter') return;
+          fromCenter();
+          setOriginActive(control, true);
+          control.dataset.originPressed = 'true';
+        });
+        control.addEventListener('keyup', function (event) {
+          if (event.key !== 'Enter') return;
+          control.dataset.originPressed = 'false';
+        });
+      });
+
+      document.querySelectorAll('[data-copy-target]').forEach(function (copyButton) {
+        var command = document.getElementById(copyButton.getAttribute('data-copy-target'));
+        var label = copyButton.querySelector('span[aria-hidden="true"]');
+        var status = copyButton.querySelector('.copy-button__status');
+        var defaultLabel = label.textContent;
+        var resetCopyTimer;
+        copyButton.addEventListener('click', function () {
+        function finish(text) {
+          window.clearTimeout(resetCopyTimer);
+          label.textContent = text;
+          status.textContent = text === 'Copied' ? '✓' : '!';
+          copyButton.dataset.copyState = text === 'Copied' ? 'success' : 'failure';
+          resetCopyTimer = window.setTimeout(function () {
+            label.textContent = defaultLabel;
+            status.textContent = '';
+            delete copyButton.dataset.copyState;
+          }, 1800);
+        }
+        function fallbackCopy(text) {
+          var field = document.createElement('textarea');
+          field.value = text;
+          field.setAttribute('readonly', '');
+          field.style.position = 'fixed';
+          field.style.opacity = '0';
+          document.body.appendChild(field);
+          field.select();
+          var copied = false;
+          try { copied = document.execCommand('copy'); } catch (error) { copied = false; }
+          field.remove();
+          finish(copied ? 'Copied' : 'Select command');
+        }
+        var text = command.textContent.trim();
+        if (!navigator.clipboard || !navigator.clipboard.writeText) { fallbackCopy(text); return; }
+        navigator.clipboard.writeText(text).then(function () { finish('Copied'); }).catch(function () { fallbackCopy(text); });
+        });
+      });
+
+      var installTabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"][aria-controls^="install-panel-"]'));
+      var installTabList = document.querySelector('.install-console__tabs');
+      var installIndicator = document.querySelector('.install-tab-indicator');
+      function updateInstallIndicator(tab) {
+        if (!installTabList || !installIndicator || !tab) return;
+        installTabList.style.setProperty('--tab-indicator-x', tab.offsetLeft + 'px');
+        installTabList.style.setProperty('--tab-indicator-width', tab.offsetWidth + 'px');
+        installTabList.classList.add('has-tab-indicator');
+      }
+      function activateInstallTab(tab) {
+        installTabs.forEach(function (other) {
+          var selected = other === tab;
+          var panel = document.getElementById(other.getAttribute('aria-controls'));
+          other.classList.toggle('is-active', selected);
+          other.setAttribute('aria-selected', selected ? 'true' : 'false');
+          other.tabIndex = selected ? 0 : -1;
+          panel.classList.remove('is-entering');
+          panel.hidden = !selected;
+          if (selected && !reduceMotion) {
+            panel.offsetHeight;
+            panel.classList.add('is-entering');
+          }
+        });
+        updateInstallIndicator(tab);
+      }
+      installTabs.forEach(function (tab, index) {
+        tab.addEventListener('click', function () { activateInstallTab(tab); });
+        tab.addEventListener('keydown', function (event) {
+          if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+          event.preventDefault();
+          var offset = event.key === 'ArrowRight' ? 1 : -1;
+          var next = installTabs[(index + offset + installTabs.length) % installTabs.length];
+          activateInstallTab(next);
+          next.focus();
+        });
+      });
+
+      var faqItems = Array.prototype.slice.call(document.querySelectorAll('[data-faq-accordion] .faq-item'));
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      activateInstallTab(installTabs.find(function (tab) { return tab.getAttribute('aria-selected') === 'true'; }) || installTabs[0]);
+
+      function setFaqItem(item, shouldOpen, immediate) {
+        var button = item.querySelector('button');
+        var panel = item.querySelector('.faq-panel');
+        window.clearTimeout(panel.faqTimer);
+
+        if (shouldOpen) {
+          panel.hidden = false;
+          button.setAttribute('aria-expanded', 'true');
+          item.classList.add('is-open');
+          panel.style.maxHeight = immediate || reduceMotion ? panel.scrollHeight + 'px' : '0px';
+          if (!immediate && !reduceMotion) {
+            panel.offsetHeight;
+            window.requestAnimationFrame(function () { panel.style.maxHeight = panel.scrollHeight + 'px'; });
+          }
+          return;
+        }
+
+        button.setAttribute('aria-expanded', 'false');
+        if (panel.hidden) {
+          item.classList.remove('is-open');
+          panel.style.maxHeight = '0px';
+          return;
+        }
+
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+        panel.offsetHeight;
+        item.classList.remove('is-open');
+        panel.style.maxHeight = '0px';
+        if (immediate || reduceMotion) {
+          panel.hidden = true;
+        } else {
+          panel.faqTimer = window.setTimeout(function () { panel.hidden = true; }, 440);
+        }
+      }
+
+      faqItems.forEach(function (item) {
+        var button = item.querySelector('button');
+        setFaqItem(item, button.getAttribute('aria-expanded') === 'true', true);
+        button.addEventListener('click', function () {
+          var willOpen = button.getAttribute('aria-expanded') !== 'true';
+          faqItems.forEach(function (other) { setFaqItem(other, other === item && willOpen, false); });
+        });
+      });
+
+      window.addEventListener('resize', function () {
+        updateInstallIndicator(installTabs.find(function (tab) { return tab.getAttribute('aria-selected') === 'true'; }));
+        faqItems.forEach(function (item) {
+          if (!item.classList.contains('is-open')) return;
+          var panel = item.querySelector('.faq-panel');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        });
+      });
+
+      var motionSurfaces = Array.prototype.slice.call(document.querySelectorAll('[data-evidence-proof], [data-memory-flow]'));
+      if (!reduceMotion && 'IntersectionObserver' in window && motionSurfaces.length) {
+        document.documentElement.classList.add('motion-ready');
+        var motionObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-active');
+            motionObserver.unobserve(entry.target);
+          });
+        }, { rootMargin: '0px 0px -14% 0px', threshold: .18 });
+        motionSurfaces.forEach(function (surface) { motionObserver.observe(surface); });
+      }
+
+      var sectionLinks = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]'));
+      if ('IntersectionObserver' in window && sectionLinks.length) {
+        var sectionsById = new Map();
+        sectionLinks.forEach(function (link) {
+          var section = document.querySelector(link.getAttribute('href'));
+          if (section) sectionsById.set(section, link);
+        });
+        var visibleSections = new Map();
+        var sectionObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) visibleSections.set(entry.target, entry.intersectionRatio);
+            else visibleSections.delete(entry.target);
+          });
+          var activeSection = null;
+          var activeRatio = 0;
+          visibleSections.forEach(function (ratio, section) {
+            if (ratio <= activeRatio) return;
+            activeSection = section;
+            activeRatio = ratio;
+          });
+          sectionLinks.forEach(function (link) { link.removeAttribute('aria-current'); });
+          if (activeSection) sectionsById.get(activeSection).setAttribute('aria-current', 'location');
+        }, { rootMargin: '-28% 0px -52% 0px', threshold: [0, .05, .2, .45] });
+        sectionsById.forEach(function (link, section) { sectionObserver.observe(section); });
+      }
+
+    })();
+  </script>
+</body>
+</html>
