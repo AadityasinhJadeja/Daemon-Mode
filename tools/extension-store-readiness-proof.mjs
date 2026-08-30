@@ -23,6 +23,11 @@ assert.ok(manifest.permissions.includes("scripting"));
 assert.ok(!manifest.permissions.includes("activeTab"));
 assert.equal(manifest.content_scripts, undefined, "content script must not be statically injected before consent");
 assert.match(popupSource, /chrome\.permissions\.request/);
+assert.match(
+  popupSource,
+  /const SETUP_URL = "https:\/\/github\.com\/AadityasinhJadeja\/Daemon-Mode#install";/,
+  "offline setup action must open the README install section"
+);
 assert.doesNotMatch(backgroundSource, /chrome\.permissions\.request/);
 
 assert.deepEqual(

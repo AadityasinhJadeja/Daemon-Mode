@@ -18,7 +18,7 @@ const activityList = document.querySelector("#activity-list");
 const consentDisclosure = document.querySelector("#consent-disclosure");
 
 const MEMORY_PULSE_URL = "http://127.0.0.1:4317/memory-pulse";
-const SETUP_URL = "https://github.com/AadityasinhJadeja/Daemon-Mode#quick-start";
+const SETUP_URL = "https://github.com/AadityasinhJadeja/Daemon-Mode#install";
 const OPTIONAL_PAGE_ORIGINS = ["http://*/*", "https://*/*"];
 let activityExpanded = false;
 

@@ -11,8 +11,10 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Daemon Mode">
   <meta property="og:description" content="Private, local, citation-backed memory for your AI agents.">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:url" content="https://daemonmode-ai.vercel.app/">
+  <meta name="twitter:card" content="summary">
 
+  <link rel="canonical" href="https://daemonmode-ai.vercel.app/">
   <link rel="icon" href="./assets/icons/dmn-icon-32.png" type="image/png">
   <link rel="apple-touch-icon" href="./assets/icons/dmn-icon-192.png">
   <link rel="preload" href="./assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -30,7 +32,7 @@
   <header class="site-header">
     <div class="shell header-row">
       <a class="brand" href="/" aria-label="Daemon Mode home">
-        <img src="./assets/brand/dmn-mark.png" alt="" width="34" height="34">
+        <img src="./assets/icons/dmn-icon-64.png" alt="" width="34" height="34">
         <span>daemon<span>.mode</span></span>
       </a>
 
@@ -93,11 +95,11 @@
             <b>macOS</b>
           </div>
           <div class="install-console__body install-panel" id="install-panel-service" role="tabpanel" aria-labelledby="install-tab-service">
-            <p class="install-note"># Preview command · run from the Daemon repository checkout</p>
+            <p class="install-note"># Launch install · available when public GitHub access opens</p>
             <div class="command-row">
               <span class="prompt" aria-hidden="true">$</span>
-              <code id="service-install-command">./tools/install-local-service-launch-agent.sh</code>
-              <button class="copy-button" data-copy-target="service-install-command" type="button" aria-label="Copy companion service install command">
+              <code id="service-install-command">git clone https://github.com/AadityasinhJadeja/Daemon-Mode.git<br>cd Daemon-Mode<br>./tools/install-local-service-launch-agent.sh</code>
+              <button class="copy-button" data-copy-target="service-install-command" type="button" aria-label="Copy companion service setup commands">
                 <span aria-hidden="true">Copy</span>
                 <span class="copy-button__status" aria-live="polite"></span>
               </button>
@@ -344,7 +346,7 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <a class="brand footer-brand" href="/" aria-label="Daemon Mode home">
-        <img src="./assets/brand/dmn-mark.png" alt="" width="34" height="34">
+        <img src="./assets/icons/dmn-icon-64.png" alt="" width="34" height="34">
         <span>daemon<span>.mode</span></span>
       </a>
       <p class="footer-hook"><em>Remembered locally.</em> Available to the agents you choose.</p>
@@ -469,7 +471,7 @@
           field.remove();
           finish(copied ? 'Copied' : 'Select command');
         }
-        var text = command.textContent.trim();
+        var text = command.innerText.trim();
         if (!navigator.clipboard || !navigator.clipboard.writeText) { fallbackCopy(text); return; }
         navigator.clipboard.writeText(text).then(function () { finish('Copied'); }).catch(function () { fallbackCopy(text); });
         });

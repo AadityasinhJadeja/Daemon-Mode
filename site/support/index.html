@@ -4,12 +4,16 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Support — Daemon Mode</title><meta name="description" content="Installation, service recovery, MCP connection, updates, and uninstall guidance for Daemon Mode on macOS.">
   <meta name="color-scheme" content="dark"><meta name="theme-color" content="#061416">
+  <meta property="og:type" content="website"><meta property="og:title" content="Support — Daemon Mode">
+  <meta property="og:description" content="Installation, service recovery, MCP connection, updates, and uninstall guidance for Daemon Mode on macOS.">
+  <meta property="og:url" content="https://daemonmode-ai.vercel.app/support/"><meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://daemonmode-ai.vercel.app/support/">
   <link rel="icon" href="../assets/icons/dmn-icon-32.png" type="image/png"><link rel="stylesheet" href="../cohesive.css?v=0.5.10-launch-5"><script src="../file-navigation.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a><div class="page-atmosphere" aria-hidden="true"></div>
   <header class="site-header"><div class="shell header-row">
-    <a class="brand" href="../" aria-label="Daemon Mode home"><img src="../assets/brand/dmn-mark.png" alt="" width="34" height="34"><span>daemon<span>.mode</span></span></a>
+    <a class="brand" href="../" aria-label="Daemon Mode home"><img src="../assets/icons/dmn-icon-64.png" alt="" width="34" height="34"><span>daemon<span>.mode</span></span></a>
     <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation"><a href="../#product">Product</a><a href="../#how">How it works</a><a href="../#install">Install</a><a href="../docs/" aria-current="page">Docs</a></nav>
     <div class="header-actions"><a class="store-soon" href="../"><i aria-hidden="true"></i> Back to product</a></div><button class="menu-button" type="button" aria-controls="primary-nav" aria-expanded="false">Menu</button>
   </div></header>
@@ -27,7 +31,9 @@
         </section>
         <section id="install">
           <h2>Install the two local components</h2>
-          <h3>1. Companion local service</h3><p>During the source-installed preview, run the installer from a repository checkout:</p><pre><code>./tools/install-local-service-launch-agent.sh</code></pre><p>This installs and starts the companion service for your macOS user. It does not delete or replace an existing memory vault.</p><div class="document-callout"><strong>No window needs to stay open</strong><p>The installer registers a per-user macOS LaunchAgent. The service starts after you log in, returns after a normal reboot once you log in again, and is restarted by macOS if the process exits unexpectedly. The dashboard is only a view into the service; closing its tab does not stop capture.</p></div>
+          <h3>1. Companion local service</h3><p>When public GitHub access opens, clone the repository and run the installer from its checkout:</p><pre><code>git clone https://github.com/AadityasinhJadeja/Daemon-Mode.git
+cd Daemon-Mode
+./tools/install-local-service-launch-agent.sh</code></pre><p>This installs and starts the companion service for your macOS user. It does not delete or replace an existing memory vault.</p><div class="document-callout"><strong>No window needs to stay open</strong><p>The installer registers a per-user macOS LaunchAgent. The service starts after you log in, returns after a normal reboot once you log in again, and is restarted by macOS if the process exits unexpectedly. The dashboard is only a view into the service; closing its tab does not stop capture.</p></div>
           <h3>2. Chrome extension</h3><p>During the technical preview, open <code>chrome://extensions</code>, turn on Developer mode, choose <strong>Load unpacked</strong>, and select this checkout's <code>extension/</code> folder. Chrome will show its normal Developer mode warning. The official Store URL will replace this source-install step only after publication.</p>
           <div class="document-callout"><strong>The extension is not the service</strong><p>Installing only the extension does not create or host the memory vault. Chrome captures allowed pages; the companion service stores and retrieves them.</p></div>
         </section>
