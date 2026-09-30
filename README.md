@@ -3,7 +3,9 @@
 [![Verify](https://github.com/AadityasinhJadeja/Daemon-Mode/actions/workflows/ci.yml/badge.svg)](https://github.com/AadityasinhJadeja/Daemon-Mode/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-173f43.svg)](LICENSE)
 
-Local browsing memory for AI agents.
+Local, private, citation-backed browsing memory for AI agents.
+
+[Website](https://daemonmode-ai.vercel.app) · [Documentation](https://daemonmode-ai.vercel.app/docs/)
 
 Daemon saves useful content from allowed Chrome pages to a SQLite file on your Mac. Connect it to Codex, Claude Code, Claude Desktop, or Cursor over MCP, and your agent can find past research with the original links and capture times.
 
@@ -11,7 +13,7 @@ Daemon saves useful content from allowed Chrome pages to a SQLite file on your M
 - Sensitive pages are protected before their text is read.
 - Agents cannot delete, clear, export, or change protection rules.
 
-> **Technical preview:** Daemon currently supports Google Chrome on macOS and is installed from source. The Chrome Web Store listing is not live yet.
+> **Public technical preview:** Daemon currently supports Google Chrome on macOS and is installed from this repository. The Chrome Web Store listing is not live yet.
 
 ## When it helps
 

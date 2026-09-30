@@ -31,7 +31,7 @@
         </section>
         <section id="install">
           <h2>Install the two local components</h2>
-          <h3>1. Companion local service</h3><p>When public GitHub access opens, clone the repository and run the installer from its checkout:</p><pre><code>git clone https://github.com/AadityasinhJadeja/Daemon-Mode.git
+          <h3>1. Companion local service</h3><p>Clone the public repository and run the installer from its checkout:</p><pre><code>git clone https://github.com/AadityasinhJadeja/Daemon-Mode.git
 cd Daemon-Mode
 ./tools/install-local-service-launch-agent.sh</code></pre><p>This installs and starts the companion service for your macOS user. It does not delete or replace an existing memory vault.</p><div class="document-callout"><strong>No window needs to stay open</strong><p>The installer registers a per-user macOS LaunchAgent. The service starts after you log in, returns after a normal reboot once you log in again, and is restarted by macOS if the process exits unexpectedly. The dashboard is only a view into the service; closing its tab does not stop capture.</p></div>
           <h3>2. Chrome extension</h3><p>During the technical preview, open <code>chrome://extensions</code>, turn on Developer mode, choose <strong>Load unpacked</strong>, and select this checkout's <code>extension/</code> folder. Chrome will show its normal Developer mode warning. The official Store URL will replace this source-install step only after publication.</p>

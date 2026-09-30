@@ -76,8 +76,9 @@ main, .site-header, .site-footer { position: relative; z-index: 1; }
 .primary-nav a[aria-current="page"], .primary-nav a[aria-current="location"] { color: var(--ink); }
 .primary-nav a[aria-current="page"]::after, .primary-nav a[aria-current="location"]::after { transform: scaleX(1); }
 .header-actions { align-items: center; display: flex; gap: 14px; justify-self: end; }
-.github-placeholder { align-items: center; color: var(--muted); display: inline-flex; font-family: var(--mono); font-size: 11px; gap: 7px; letter-spacing: .02em; opacity: .82; }
-.github-placeholder img { height: 16px; opacity: .88; width: 16px; }
+.github-link { align-items: center; color: var(--muted); display: inline-flex; font-family: var(--mono); font-size: 11px; gap: 7px; letter-spacing: .02em; }
+.github-link:hover { color: var(--ink); }
+.github-link img { height: 16px; opacity: .88; width: 16px; }
 .store-placeholder, .store-soon { align-items: center; background: rgba(155, 217, 204, .04); border: 1px solid var(--rule-strong); border-radius: 999px; color: var(--muted); display: inline-flex; font-size: 11px; font-weight: 700; gap: 8px; min-height: 32px; padding: 0 13px; }
 .store-placeholder i, .store-soon i, .availability-note span, .footer-status i { background: var(--amber); border-radius: 50%; box-shadow: 0 0 12px rgba(224, 173, 89, .48); height: 5px; width: 5px; }
 .menu-button { background: transparent; border: 1px solid var(--rule-strong); border-radius: 6px; display: none; min-height: 38px; padding: 0 12px; }
@@ -417,7 +418,7 @@ section:not(.hero) { border-bottom: 1px solid var(--rule); }
 :focus-visible { outline: 2px solid var(--teal); outline-offset: 4px; }
 
 @media (max-width: 1080px) {
-  .github-placeholder span { display: none; }
+  .github-link span { display: none; }
   .hero h1 { font-size: clamp(44px, 6.2vw, 64px); }
   .evidence-proof__instrument { grid-template-columns: minmax(0, .9fr) 44px minmax(0, 1fr) 44px minmax(0, 1.05fr); }
   .evidence-proof article { padding: 28px 22px; }
