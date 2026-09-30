@@ -13,7 +13,7 @@ Daemon saves useful content from allowed Chrome pages to a SQLite file on your M
 - Sensitive pages are protected before their text is read.
 - Agents cannot delete, clear, export, or change protection rules.
 
-> **Public technical preview:** Daemon currently supports Google Chrome on macOS and is installed from this repository. The Chrome Web Store listing is not live yet.
+Daemon currently supports Google Chrome on macOS and is installed from this repository.
 
 ## When it helps
 

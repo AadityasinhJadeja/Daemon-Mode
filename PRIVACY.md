@@ -10,7 +10,7 @@ Daemon Mode's use of information received from Chrome extension APIs adheres to 
 
 ## What is stored
 
-For pages that pass protection checks, Daemon can store the page URL, title, domain, capture timestamp, extracted page text, text length, and local capture metadata in SQLite. It also stores bounded agent-tool diagnostics such as tool name, status, timing, evidence count, and a bounded query for owner-visible dogfood review.
+For pages that pass protection checks, Daemon can store the page URL, title, domain, capture timestamp, extracted page text, text length, and local capture metadata in SQLite. It also stores bounded agent-tool diagnostics such as tool name, status, timing, evidence count, and a bounded query for owner-visible activity review.
 
 Daemon does not intentionally store browser cookies, passwords, form values, or account credentials. Page text can still contain sensitive information, so review protection settings before browsing private material.
 
@@ -22,7 +22,7 @@ Memory is stored locally. The default macOS path is:
 ~/Library/Application Support/Daemon Mode/memory.sqlite3
 ```
 
-The extension sends allowed page data only to the companion service on the same computer. The service binds to loopback only. Daemon has no account system, cloud database, analytics service, advertising SDK, or remote sync in the current technical preview.
+The extension sends allowed page data only to the companion service on the same computer. The service binds to loopback only. Daemon has no account system, cloud database, analytics service, advertising SDK, or remote sync.
 
 On macOS, one local service and SQLite vault are shared by the Chrome profiles enabled under the same macOS user account. If Daemon is enabled in multiple Chrome profiles for that macOS account, their allowed captures are merged into that one vault. Separate macOS user accounts have separate default vaults.
 
@@ -38,7 +38,7 @@ Protected events may retain bounded diagnostics such as domain, reason, status, 
 
 Daemon's MCP data surface is non-destructive. Agents can search memory, retrieve citation-ready evidence, create an evidence-grounded answer, request an exact agent-safe activity summary, and check bounded protection status. Agents cannot export, delete, clear, or modify protection rules through MCP.
 
-Query logs do not store retrieved evidence snippets. The default dogfood report redacts query text and the absolute database path.
+Query logs do not store retrieved evidence snippets. The default diagnostics report redacts query text and the absolute database path.
 
 An agent that separately has general shell or filesystem access to the Mac is outside this MCP-only boundary.
 

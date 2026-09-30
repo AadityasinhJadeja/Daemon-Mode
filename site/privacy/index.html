@@ -54,7 +54,7 @@
             <h2>What can be stored</h2>
             <p>For pages that pass protection checks, Daemon can store the page URL, title, domain, capture time, extracted readable page text, text length, and local capture metadata in SQLite.</p>
             <p>Bounded agent-tool diagnostics can include tool name, status, timing, evidence count, and a bounded query for owner-visible review. Query logs do not store the retrieved evidence snippets.</p>
-            <div class="document-callout document-callout--warning"><strong>Private data warning</strong><p>Daemon does not intentionally store cookies, passwords, form values, or credentials. Page text can still contain sensitive information, so review protection settings before browsing private material.</p></div>
+            <div class="document-callout"><strong>Review protection settings first</strong><p>Daemon does not intentionally store cookies, passwords, form values, or credentials. Page text can still contain sensitive information, so confirm your protection settings before using Daemon with sensitive sites.</p></div>
           </section>
 
           <section id="location">
@@ -102,7 +102,7 @@
               <div><dt>Incognito</dt><dd>Not allowed.</dd></div>
             </dl>
             <p>Removing the extension stops future capture but does not delete the separately stored SQLite vault. Protection reduces exposure but cannot guarantee classification of every sensitive sentence on an otherwise allowed page. A malicious local administrator or process with access to the owner's files is outside the current boundary.</p>
-            <div class="document-callout document-callout--warning"><strong>Reporting a privacy issue</strong><p>Never post real browsing text, URLs, database files, credentials, or API keys. Follow the safe instructions on the <a href="../security/">Security page</a>.</p></div>
+            <div class="document-callout"><strong>Reporting a privacy issue</strong><p>Use example data and follow the private reporting instructions on the <a href="../security/">Security page</a>.</p></div>
           </section>
         </article>
       </div>

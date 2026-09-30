@@ -2,7 +2,7 @@
 
 Daemon's setup helper prints machine-correct local MCP configuration without changing anything by default.
 
-This is the agent-connection step, not the complete product installation. Daemon also needs the companion local service and Chrome extension. During the source-installed technical preview, load `extension/` unpacked through Chrome's Developer mode. The official Chrome Web Store URL will replace that step only after publication.
+This is the agent-connection step, not the complete product installation. Daemon also needs the companion local service and Chrome extension. Follow the browser setup instructions in the public support guide before connecting an agent.
 
 ## Local service lifecycle
 
@@ -10,7 +10,7 @@ The dashboard is only a view into Daemon. Its browser tab does not keep capture 
 
 On macOS, `./tools/install-local-service-launch-agent.sh` installs a per-user LaunchAgent with `RunAtLoad` and `KeepAlive`. The local service starts after that macOS user logs in, returns after a normal reboot once the user logs in again, and is restarted by macOS if the process exits unexpectedly. Because it is a user LaunchAgent, it does not run before login or while that user is logged out.
 
-The installer copies the service into `~/Library/Application Support/Daemon Mode/runtime/`. Moving or deleting the downloaded Git checkout after installation does not break the installed service. When Daemon is updated, run the installer from the new checkout once to atomically activate the verified runtime while preserving the SQLite memory file and the prior runtime release.
+The installer copies the service into `~/Library/Application Support/Daemon Mode/runtime/`. Moving or deleting the downloaded project after installation does not break the installed service. When Daemon is updated, run the installer from the updated project once to atomically activate the verified runtime while preserving the SQLite memory file and the prior runtime release.
 
 If the extension says **Daemon is offline**, run the same installer again. A repeat install is an idempotent repair: it verifies the managed files and LaunchAgent configuration, reloads an unloaded agent, and refuses to report success if the agent does not remain loaded. Then verify the local endpoint:
 
@@ -73,7 +73,7 @@ The default is `user`.
 
 ### Existing Daemon connections
 
-The Store-ready local service runs from a managed runtime under `~/Library/Application Support/Daemon Mode/` instead of depending on a Git checkout. If a supported client already has an older Daemon entry that points into this repository, migrate it explicitly after installing the managed service:
+The local service runs from a managed runtime under `~/Library/Application Support/Daemon Mode/` instead of depending on the downloaded project. If a supported client already has an older Daemon entry that points into the repository, migrate it explicitly after installing the managed service:
 
 ```bash
 python3 tools/setup-agent-harness.py --apply codex --scope user --migrate-existing-daemon

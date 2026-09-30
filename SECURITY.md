@@ -2,7 +2,7 @@
 
 ## Supported version
 
-Security fixes currently target the latest commit on `main` during the technical preview. There is not yet a stable release support matrix.
+Security fixes currently target the latest commit on `main`. There is not yet a multi-version support matrix.
 
 ## Report a vulnerability privately
 
@@ -29,11 +29,11 @@ If private reporting is unavailable, open a public issue containing no exploit d
 - Chrome profiles enabled under the same macOS user account share the same local Daemon service and SQLite vault.
 - An owner can deliberately export or inspect their own SQLite database.
 - Uninstalling the service preserves the database by design.
-- The current technical preview loads the extension unpacked in Developer mode. The official Chrome Web Store package becomes the normal path only after it is published.
+- Source installations use Chrome's standard unpacked-extension workflow.
 - Brave, Edge, and other Chromium browsers are not security-compatibility claims until separately verified.
 
 ## Safe testing
 
 Use the included isolated smoke and MCP proof scripts. They create temporary databases and must not be pointed at real private memory. Do not test destructive behavior against another person's machine or data.
 
-Before uploading an extension package, run `python3 tools/package-extension-proof.py` and compare the generated checksum with the intended artifact. Never upload a ZIP assembled manually from the private owner repository.
+Before uploading an extension package, run `python3 tools/package-extension-proof.py` and compare the generated checksum with the intended artifact. Only use ZIPs produced by the deterministic packaging workflow.

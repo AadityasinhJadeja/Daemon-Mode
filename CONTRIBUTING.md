@@ -31,7 +31,7 @@ python3 tools/package-extension-proof.py
 
 The packager writes an ignored ZIP plus inventory and SHA-256 sidecars under `dist/`. It places `manifest.json` at the ZIP root and refuses symlinks, secret or private-data files, personal absolute paths, private-repository references, common credential patterns, and runtime references missing from the allowlist. Source artwork and unused assets are excluded.
 
-Never upload a package built from the private planning repository. The Store privacy-policy and support URLs must be public, verified owner-approved URLs rather than placeholders.
+Only upload packages produced from the public release source. Store privacy-policy and support URLs must use verified public production pages.
 
 Before submitting a pull request, run:
 
